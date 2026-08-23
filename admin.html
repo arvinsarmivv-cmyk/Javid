@@ -1,205 +1,249 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>پنل مدیریت جاویدنامان</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>مدیریت جاویدنامان</title>
 
 <style>
+
 *{
-    box-sizing:border-box;
+box-sizing:border-box;
 }
 
 body{
-    margin:0;
-    background:#050505;
-    color:#fff;
-    font-family:Tahoma,Arial,sans-serif;
+margin:0;
+background:#050505;
+color:#fff;
+font-family:Tahoma,Arial,sans-serif;
 }
 
 header{
-    padding:25px 20px;
-    text-align:center;
-    border-bottom:1px solid #222;
+padding:30px 20px;
+text-align:center;
+border-bottom:1px solid #222;
 }
 
-header h1{
-    margin:0;
-    font-size:24px;
-    font-weight:400;
-}
-
-header p{
-    color:#666;
-    font-size:11px;
+h1{
+font-size:23px;
+font-weight:400;
+margin:0;
 }
 
 .container{
-    max-width:1000px;
-    margin:auto;
-    padding:25px 15px;
+max-width:900px;
+margin:auto;
+padding:25px 15px;
 }
 
-.status{
-    text-align:center;
-    color:#777;
-    font-size:12px;
-    margin-bottom:25px;
+.login{
+max-width:400px;
+margin:80px auto;
+background:#0b0b0b;
+border:1px solid #252525;
+border-radius:18px;
+padding:25px;
 }
 
-.card{
-    background:#0c0c0c;
-    border:1px solid #242424;
-    border-radius:16px;
-    padding:20px;
-    margin-bottom:15px;
+.login h2{
+text-align:center;
+font-weight:400;
 }
 
-.name{
-    font-size:20px;
-    margin-bottom:18px;
-}
-
-.row{
-    display:flex;
-    justify-content:space-between;
-    gap:20px;
-    padding:10px 0;
-    border-bottom:1px solid #1c1c1c;
-    font-size:12px;
-}
-
-.row:last-of-type{
-    border-bottom:0;
-}
-
-.label{
-    color:#666;
-}
-
-.value{
-    color:#ddd;
-    text-align:left;
-    direction:rtl;
-}
-
-.actions{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
+input{
+width:100%;
+height:48px;
+background:#050505;
+border:1px solid #333;
+border-radius:10px;
+color:#fff;
+padding:0 15px;
+font-family:inherit;
+outline:none;
 }
 
 button{
-    flex:1;
-    height:44px;
-    border:0;
-    border-radius:9px;
-    font-family:inherit;
-    cursor:pointer;
+height:46px;
+border:0;
+border-radius:10px;
+font-family:inherit;
+cursor:pointer;
 }
 
-.approve{
-    background:#fff;
-    color:#000;
+.login button{
+width:100%;
+margin-top:15px;
+background:#fff;
+color:#000;
 }
 
-.delete{
-    background:#171717;
-    color:#fff;
-    border:1px solid #333;
+#error{
+text-align:center;
+color:#888;
+font-size:11px;
+margin-top:15px;
 }
 
-.approve:hover{
-    background:#ddd;
-}
-
-.delete:hover{
-    background:#222;
-}
-
-.empty{
-    text-align:center;
-    padding:70px 20px;
-    color:#555;
+.panel{
+display:none;
 }
 
 .refresh{
-    display:block;
-    margin:0 auto 30px;
-    max-width:250px;
-    background:#111;
-    color:#fff;
-    border:1px solid #333;
+width:100%;
+background:#111;
+border:1px solid #333;
+color:#fff;
+margin-bottom:20px;
 }
 
-.photo-link{
-    color:#aaa;
-    text-decoration:none;
+.status{
+text-align:center;
+color:#777;
+font-size:12px;
+margin-bottom:20px;
 }
 
-.photo-link:hover{
-    color:#fff;
+.card{
+background:#0b0b0b;
+border:1px solid #242424;
+border-radius:16px;
+padding:20px;
+margin-bottom:15px;
+}
+
+.name{
+font-size:20px;
+margin-bottom:15px;
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+gap:20px;
+padding:9px 0;
+border-bottom:1px solid #1b1b1b;
+font-size:12px;
+}
+
+.label{
+color:#666;
+}
+
+.actions{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+.approve{
+flex:1;
+background:#fff;
+color:#000;
+}
+
+.delete{
+flex:1;
+background:#171717;
+color:#fff;
+border:1px solid #333;
+}
+
+.empty{
+text-align:center;
+color:#555;
+padding:60px 20px;
 }
 
 @media(max-width:600px){
 
-    .row{
-        flex-direction:column;
-        gap:5px;
-    }
+.actions{
+flex-direction:column;
+}
 
-    .value{
-        text-align:right;
-    }
-
-    .actions{
-        flex-direction:column;
-    }
+.row{
+flex-direction:column;
+gap:5px;
+}
 
 }
+
 </style>
+
 </head>
 
 <body>
 
 <header>
 
-    <h1>
-        پنل مدیریت جاویدنامان
-    </h1>
-
-    <p>
-        مدیریت درخواست‌های ثبت‌شده
-    </p>
+<h1>
+پنل مدیریت جاویدنامان
+</h1>
 
 </header>
 
 
 <div class="container">
 
-    <button
-        class="refresh"
-        onclick="loadRequests()">
 
-        بروزرسانی درخواست‌ها
+<!-- LOGIN -->
 
-    </button>
+<div
+id="login"
+class="login">
+
+<h2>
+ورود مدیر
+</h2>
+
+<input
+id="password"
+type="password"
+placeholder="رمز عبور">
+
+<button
+onclick="login()">
+
+ورود
+
+</button>
+
+<div id="error"></div>
+
+</div>
 
 
-    <div
-        id="status"
-        class="status">
+<!-- PANEL -->
 
-        در حال دریافت درخواست‌ها...
+<div
+id="panel"
+class="panel">
 
-    </div>
+<button
+class="refresh"
+onclick="loadRequests()">
 
+بروزرسانی درخواست‌ها
 
-    <div
-        id="requests">
+</button>
 
-    </div>
+<div
+id="status"
+class="status">
+
+</div>
+
+<div
+id="requests">
+
+</div>
+
+</div>
 
 </div>
 
@@ -207,427 +251,490 @@ button{
 <script>
 
 const API =
-    "https://javidnam-api.ahmad1250wxdadzh.workers.dev";
+"https://javidnam-api.ahmad1250wxdadzh.workers.dev";
 
+let adminPassword = "";
+
+
+/* ورود */
+
+async function login(){
+
+const password =
+document
+.getElementById("password")
+.value;
+
+if(!password){
+
+document
+.getElementById("error")
+.innerText =
+"رمز را وارد کنید.";
+
+return;
+
+}
+
+adminPassword =
+password;
+
+
+/* تست رمز */
+
+try{
+
+const r =
+await fetch(
+API + "/requests",
+{
+headers:{
+"X-Admin-Password":
+adminPassword
+}
+}
+);
+
+const result =
+await r.json();
+
+if(
+!r.ok ||
+!result.ok
+){
+
+adminPassword = "";
+
+document
+.getElementById("error")
+.innerText =
+"رمز اشتباه است.";
+
+return;
+
+}
+
+
+/* ورود موفق */
+
+document
+.getElementById("login")
+.style.display =
+"none";
+
+document
+.getElementById("panel")
+.style.display =
+"block";
+
+showRequests(
+result.requests || []
+);
+
+}
+
+catch(error){
+
+adminPassword = "";
+
+document
+.getElementById("error")
+.innerText =
+"خطا در اتصال به سرور.";
+
+}
+
+}
+
+
+/* نمایش */
+
+function showRequests(list){
+
+const box =
+document
+.getElementById("requests");
+
+const status =
+document
+.getElementById("status");
+
+
+status.innerText =
+list.length +
+" درخواست";
+
+
+if(!list.length){
+
+box.innerHTML = `
+
+<div class="empty">
+
+درخواستی وجود ندارد.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+box.innerHTML =
+list.map(
+item => {
+
+return `
+
+<div
+class="card"
+id="card-${escapeHTML(item.id)}">
+
+<div class="name">
+
+${escapeHTML(item.name)}
+
+</div>
+
+
+<div class="row">
+
+<span class="label">
+سن
+</span>
+
+<span>
+${escapeHTML(item.age)}
+</span>
+
+</div>
+
+
+<div class="row">
+
+<span class="label">
+شهر
+</span>
+
+<span>
+${escapeHTML(item.city)}
+</span>
+
+</div>
+
+
+<div class="row">
+
+<span class="label">
+تاریخ
+</span>
+
+<span>
+${escapeHTML(item.date)}
+</span>
+
+</div>
+
+
+<div class="row">
+
+<span class="label">
+عکس
+</span>
+
+<span>
+
+${
+item.telegram
+
+?
+
+`<a
+href="${safeURL(item.telegram)}"
+target="_blank"
+style="color:#aaa">
+
+مشاهده عکس
+
+</a>`
+
+:
+
+"ثبت نشده"
+}
+
+</span>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="approve"
+onclick="approve('${escapeHTML(item.id)}')">
+
+افزودن به سایت
+
+</button>
+
+<button
+class="delete"
+onclick="removeRequest('${escapeHTML(item.id)}')">
+
+حذف
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+).join("");
+
+}
+
+
+/* بروزرسانی */
 
 async function loadRequests(){
 
-    const box =
-        document.getElementById(
-            "requests"
-        );
+try{
 
-    const status =
-        document.getElementById(
-            "status"
-        );
+const r =
+await fetch(
+API + "/requests",
+{
+headers:{
+"X-Admin-Password":
+adminPassword
+}
+}
+);
 
+const result =
+await r.json();
 
-    status.innerText =
-        "در حال دریافت درخواست‌ها...";
+if(
+r.status === 401
+){
 
+logout();
 
-    try{
+return;
 
-        const r =
-            await fetch(
-                API +
-                "/requests?t=" +
-                Date.now()
-            );
+}
 
+showRequests(
+result.requests || []
+);
 
-        const result =
-            await r.json();
+}
 
+catch(error){
 
-        if(!r.ok || !result.ok){
+document
+.getElementById("status")
+.innerText =
+"خطا در اتصال";
 
-            throw new Error(
-                result.error ||
-                "خطا در دریافت درخواست‌ها"
-            );
-
-        }
-
-
-        const requests =
-            Array.isArray(
-                result.requests
-            )
-            ?
-            result.requests
-            :
-            [];
-
-
-        if(!requests.length){
-
-            box.innerHTML = `
-
-                <div class="empty">
-
-                    در حال حاضر
-                    درخواست جدیدی وجود ندارد.
-
-                </div>
-
-            `;
-
-            status.innerText =
-                "۰ درخواست";
-
-            return;
-
-        }
-
-
-        status.innerText =
-            requests.length +
-            " درخواست";
-
-
-        box.innerHTML =
-            requests.map(
-                requestCard
-            ).join("");
-
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        status.innerText =
-            "خطا در دریافت اطلاعات";
-
-
-        box.innerHTML = `
-
-            <div class="empty">
-
-                ${escapeHTML(
-                    error.message
-                )}
-
-            </div>
-
-        `;
-
-    }
+}
 
 }
 
 
-/* =========================
-   کارت درخواست
-========================= */
-
-function requestCard(item){
-
-    const id =
-        escapeHTML(item.id);
-
-
-    const name =
-        escapeHTML(item.name);
-
-
-    const age =
-        escapeHTML(item.age);
-
-
-    const city =
-        escapeHTML(item.city);
-
-
-    const date =
-        escapeHTML(item.date);
-
-
-    const telegram =
-        item.telegram
-        ?
-        `
-        <a
-            class="photo-link"
-            href="${safeURL(item.telegram)}"
-            target="_blank"
-            rel="noopener">
-
-            مشاهده لینک عکس
-
-        </a>
-        `
-        :
-        "ثبت نشده";
-
-
-    return `
-
-        <div
-            class="card"
-            id="request-${id}">
-
-            <div class="name">
-
-                ${name}
-
-            </div>
-
-
-            <div class="row">
-
-                <span class="label">
-                    سن
-                </span>
-
-                <span class="value">
-                    ${age}
-                </span>
-
-            </div>
-
-
-            <div class="row">
-
-                <span class="label">
-                    شهر
-                </span>
-
-                <span class="value">
-                    ${city}
-                </span>
-
-            </div>
-
-
-            <div class="row">
-
-                <span class="label">
-                    تاریخ
-                </span>
-
-                <span class="value">
-                    ${date}
-                </span>
-
-            </div>
-
-
-            <div class="row">
-
-                <span class="label">
-                    عکس
-                </span>
-
-                <span class="value">
-                    ${telegram}
-                </span>
-
-            </div>
-
-
-            <div class="actions">
-
-                <button
-                    class="approve"
-                    onclick="approve('${id}')">
-
-                    افزودن به سایت
-
-                </button>
-
-
-                <button
-                    class="delete"
-                    onclick="deleteRequest('${id}')">
-
-                    حذف درخواست
-
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================
-   تأیید و افزودن
-========================= */
+/* افزودن */
 
 async function approve(id){
 
-    if(
-        !confirm(
-            "این فرد به سایت اضافه شود؟"
-        )
-    ){
+if(
+!confirm(
+"این فرد به سایت اضافه شود؟"
+)
+){
 
-        return;
+return;
 
-    }
+}
 
+const r =
+await fetch(
+API + "/approve",
+{
+method:"POST",
 
-    try{
+headers:{
+"Content-Type":
+"application/json",
 
-        const r =
-            await fetch(
-                API + "/approve",
-                {
-                    method:"POST",
+"X-Admin-Password":
+adminPassword
+},
 
-                    headers:{
-                        "Content-Type":
-                            "application/json"
-                    },
+body:
+JSON.stringify({
+id:id
+})
+}
+);
 
-                    body:JSON.stringify({
-                        id:id
-                    })
-                }
-            );
-
-
-        const result =
-            await r.json();
-
-
-        if(!r.ok || !result.ok){
-
-            throw new Error(
-                result.error ||
-                "افزودن انجام نشد"
-            );
-
-        }
+const result =
+await r.json();
 
 
-        alert(
-            "فرد با موفقیت به سایت اضافه شد."
-        );
+if(
+r.status === 401
+){
 
+logout();
 
-        loadRequests();
-
-
-    }
-
-    catch(error){
-
-        alert(
-            "خطا: " +
-            error.message
-        );
-
-    }
+return;
 
 }
 
 
-/* =========================
-   حذف درخواست
-========================= */
+if(
+!result.ok
+){
 
-async function deleteRequest(id){
+alert(
+result.error ||
+"خطا در افزودن"
+);
 
-    if(
-        !confirm(
-            "این درخواست حذف شود؟"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    try{
-
-        const r =
-            await fetch(
-                API +
-                "/requests?id=" +
-                encodeURIComponent(id),
-                {
-                    method:"DELETE"
-                }
-            );
-
-
-        const result =
-            await r.json();
-
-
-        if(!r.ok || !result.ok){
-
-            throw new Error(
-                result.error ||
-                "حذف انجام نشد"
-            );
-
-        }
-
-
-        alert(
-            "درخواست حذف شد."
-        );
-
-
-        loadRequests();
-
-
-    }
-
-    catch(error){
-
-        alert(
-            "خطا: " +
-            error.message
-        );
-
-    }
+return;
 
 }
 
 
-/* =========================
-   امنیت
-========================= */
+alert(
+"فرد به سایت اضافه شد."
+);
+
+loadRequests();
+
+}
+
+
+/* حذف */
+
+async function removeRequest(id){
+
+if(
+!confirm(
+"این درخواست حذف شود؟"
+)
+){
+
+return;
+
+}
+
+
+const r =
+await fetch(
+API +
+"/requests?id=" +
+encodeURIComponent(id),
+{
+method:"DELETE",
+
+headers:{
+"X-Admin-Password":
+adminPassword
+}
+}
+);
+
+
+const result =
+await r.json();
+
+
+if(
+r.status === 401
+){
+
+logout();
+
+return;
+
+}
+
+
+if(
+!result.ok
+){
+
+alert(
+result.error ||
+"خطا در حذف"
+);
+
+return;
+
+}
+
+
+alert(
+"درخواست حذف شد."
+);
+
+loadRequests();
+
+}
+
+
+/* خروج */
+
+function logout(){
+
+adminPassword = "";
+
+document
+.getElementById("panel")
+.style.display =
+"none";
+
+document
+.getElementById("login")
+.style.display =
+"block";
+
+document
+.getElementById("password")
+.value = "";
+
+}
+
+
+/* امنیت */
 
 function escapeHTML(value){
 
-    return String(
-        value ?? "-"
-    )
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+return String(
+value ?? ""
+)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
 
 }
-
 
 function safeURL(value){
 
-    return String(value)
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+return String(value)
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
 
 }
-
-
-/* =========================
-   شروع
-========================= */
-
-loadRequests();
 
 </script>
 
