@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پنل مدیریت جاویدنامان</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#050505;
+    color:#fff;
+    font-family:Tahoma,Arial,sans-serif;
+    padding:25px;
+}
+
+.container{
+    max-width:600px;
+    margin:auto;
+}
+
+h1{
+    font-weight:400;
+    margin-bottom:30px;
+}
+
+.box{
+    background:#101010;
+    border:1px solid #292929;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    color:#aaa;
+    font-size:12px;
+    margin:15px 0 7px;
+}
+
+input,select{
+    width:100%;
+    padding:13px;
+    background:#080808;
+    color:#fff;
+    border:1px solid #292929;
+    border-radius:10px;
+    outline:none;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:18px;
+    border:0;
+    border-radius:11px;
+    background:#fff;
+    color:#000;
+    font-family:inherit;
+    cursor:pointer;
+}
+
+.dates{
+    display:flex;
+    gap:10px;
+}
+
+.date{
+    flex:1;
+    background:#080808;
+    color:#aaa;
+    border:1px solid #292929;
+}
+
+.date.selected{
+    background:#fff;
+    color:#000;
+}
+
+#status{
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    display:none;
+}
+
+.success{
+    display:block!important;
+    background:#123b20;
+    color:#8cffad;
+}
+
+.error{
+    display:block!important;
+    background:#3b1212;
+    color:#ff8c8c;
+}
+
+small{
+    color:#666;
+    line-height:1.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>پنل مدیریت جاویدنامان</h1>
+
+<div class="box">
+
+<label>GitHub Token</label>
+
+<input
+id="token"
+type="password"
+placeholder="توکن GitHub را وارد کنید">
+
+<small>
+توکن فقط برای همین درخواست استفاده می‌شود و داخل کد ذخیره نشده است.
+</small>
+
+</div>
+
+
+<div class="box">
+
+<label>نام و نام خانوادگی</label>
+
+<input id="name" placeholder="مثلاً علی رضایی">
+
+
+<label>سن</label>
+
+<input id="age" type="number" placeholder="سن">
+
+
+<label>شهر</label>
+
+<input id="city" placeholder="شهر">
+
+
+<label>تاریخ</label>
+
+<div class="dates">
+
+<button
+class="date"
+onclick="selectDate(this,'۱۸ دی ۱۴۰۴')">
+۱۸ دی ۱۴۰۴
+</button>
+
+<button
+class="date"
+onclick="selectDate(this,'۱۹ دی ۱۴۰۴')">
+۱۹ دی ۱۴۰۴
+</button>
+
+</div>
+
+
+<label>لینک پیام تلگرام عکس</label>
+
+<input
+id="telegram"
+placeholder="https://t.me/...">
+
+
+<button onclick="addPerson()">
+افزودن به سایت
+</button>
+
+<div id="status"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const OWNER = "arvinsarmivv-cmyk";
+const REPO = "Javid";
+const FILE = "data.json";
+
+let selectedDate = "";
+
+
+function selectDate(button,date){
+
+    document
+    .querySelectorAll(".date")
+    .forEach(x =>
+        x.classList.remove("selected")
+    );
+
+    button.classList.add("selected");
+
+    selectedDate = date;
+}
+
+
+function showStatus(message,type){
+
+    const box =
+        document.getElementById("status");
+
+    box.className = type;
+    box.innerText = message;
+
+}
+
+
+async function addPerson(){
+
+    const token =
+        document.getElementById("token")
+        .value.trim();
+
+    const name =
+        document.getElementById("name")
+        .value.trim();
+
+    const age =
+        document.getElementById("age")
+        .value.trim();
+
+    const city =
+        document.getElementById("city")
+        .value.trim();
+
+    const telegram =
+        document.getElementById("telegram")
+        .value.trim();
+
+
+    if(
+        !token ||
+        !name ||
+        !age ||
+        !city ||
+        !selectedDate ||
+        !telegram
+    ){
+
+        showStatus(
+            "همه اطلاعات را کامل کنید.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!telegram.startsWith("https://t.me/")){
+
+        showStatus(
+            "لینک تلگرام معتبر نیست.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    showStatus(
+        "در حال اتصال به GitHub...",
+        "success"
+    );
+
+
+    try{
+
+        /*
+        دریافت data.json فعلی
+        */
+
+        const api =
+        `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`;
+
+
+        const response =
+        await fetch(api,{
+            headers:{
+                "Authorization":
+                `Bearer ${token}`,
+
+                "Accept":
+                "application/vnd.github+json"
+            }
+        });
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "توکن یا دسترسی GitHub صحیح نیست."
+            );
+
+        }
+
+
+        const file =
+        await response.json();
+
+
+        /*
+        تبدیل محتوای GitHub
+        */
+
+        const binary =
+        atob(
+            file.content.replace(/\n/g,"")
+        );
+
+
+        const bytes =
+        Uint8Array.from(
+            binary,
+            c => c.charCodeAt(0)
+        );
+
+
+        const oldData =
+        new TextDecoder("utf-8")
+        .decode(bytes);
+
+
+        let data = [];
+
+
+        try{
+
+            data =
+            JSON.parse(oldData);
+
+        }catch{
+
+            data = [];
+
+        }
+
+
+        /*
+        فرد جدید
+        */
+
+        data.push({
+
+            name:name,
+
+            age:Number(age),
+
+            city:city,
+
+            date:selectedDate,
+
+            telegram:telegram
+
+        });
+
+
+        /*
+        تبدیل JSON به Base64
+        */
+
+        const newContent =
+        JSON.stringify(
+            data,
+            null,
+            2
+        );
+
+
+        const encoded =
+        btoa(
+            String.fromCharCode(
+                ...new TextEncoder()
+                .encode(newContent)
+            )
+        );
+
+
+        /*
+        ذخیره در GitHub
+        */
+
+        const update =
+        await fetch(api,{
+
+            method:"PUT",
+
+            headers:{
+
+                "Authorization":
+                `Bearer ${token}`,
+
+                "Accept":
+                "application/vnd.github+json",
+
+                "Content-Type":
+                "application/json"
+
+            },
+
+            body:JSON.stringify({
+
+                message:
+                `افزودن ${name} به جاویدنامان`,
+
+                content:encoded,
+
+                sha:file.sha
+
+            })
+
+        });
+
+
+        if(!update.ok){
+
+            const error =
+            await update.json();
+
+            throw new Error(
+                error.message ||
+                "ذخیره انجام نشد."
+            );
+
+        }
+
+
+        showStatus(
+            `✅ ${name} با موفقیت به سایت اضافه شد.`,
+            "success"
+        );
+
+
+        /*
+        پاک کردن فرم
+        */
+
+        document.getElementById("name").value="";
+        document.getElementById("age").value="";
+        document.getElementById("city").value="";
+        document.getElementById("telegram").value="";
+
+        selectedDate="";
+
+        document
+        .querySelectorAll(".date")
+        .forEach(x =>
+            x.classList.remove("selected")
+        );
+
+
+    }catch(error){
+
+        showStatus(
+            "❌ "+error.message,
+            "error"
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
