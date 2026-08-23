@@ -2,13 +2,17 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>جاویدنامان</title>
 
 <style>
 *{
     box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -19,50 +23,42 @@ body{
 }
 
 header{
-    height:70px;
     position:fixed;
     top:0;
-    left:0;
     right:0;
-    z-index:1000;
+    left:0;
+
+    height:68px;
 
     display:flex;
     align-items:center;
-    justify-content:space-between;
+    justify-content:center;
 
-    padding:0 25px;
-
-    background:rgba(5,5,5,.86);
+    background:rgba(5,5,5,.82);
     backdrop-filter:blur(18px);
 
-    border-bottom:1px solid #222;
+    border-bottom:1px solid #1c1c1c;
+
+    z-index:1000;
 }
 
 .logo{
+    text-align:center;
+
     font-size:18px;
     font-weight:bold;
 }
 
 .logo small{
     display:block;
+
     color:#666;
+
     font-size:9px;
+
     margin-top:5px;
+
     font-weight:normal;
-}
-
-.add{
-    border:1px solid #444;
-    background:#fff;
-    color:#000;
-
-    padding:10px 18px;
-
-    border-radius:25px;
-
-    cursor:pointer;
-
-    font-family:inherit;
 }
 
 .hero{
@@ -74,22 +70,24 @@ header{
 
     text-align:center;
 
-    padding:120px 20px 60px;
+    padding:
+        110px 20px
+        60px;
 }
 
 .hero h1{
     margin:0;
 
     font-size:
-        clamp(50px,12vw,110px);
+        clamp(50px,12vw,105px);
 
     font-weight:300;
 
-    letter-spacing:5px;
+    letter-spacing:6px;
 }
 
-.hero-line{
-    width:70px;
+.line{
+    width:65px;
     height:1px;
 
     background:#555;
@@ -98,7 +96,7 @@ header{
 }
 
 .hero p{
-    max-width:600px;
+    max-width:650px;
 
     margin:auto;
 
@@ -106,21 +104,21 @@ header{
 
     font-size:13px;
 
-    line-height:2.2;
+    line-height:2.3;
 }
 
 .search{
-    width:100%;
     max-width:500px;
 
-    margin:40px auto 0;
+    margin:38px auto 0;
 }
 
 .search input{
     width:100%;
-    height:52px;
 
-    border:1px solid #292929;
+    height:50px;
+
+    border:1px solid #282828;
 
     border-radius:30px;
 
@@ -128,51 +126,52 @@ header{
 
     color:#fff;
 
-    padding:0 22px;
-
     outline:none;
+
+    padding:0 20px;
 
     font-family:inherit;
 }
 
 .search input:focus{
-    border-color:#666;
+    border-color:#555;
 }
 
 .section{
-    max-width:1200px;
+    max-width:1150px;
 
     margin:auto;
 
-    padding:20px;
+    padding:
+        20px;
 }
 
-.section-title{
+.title{
     text-align:center;
 
     font-size:25px;
 
     font-weight:400;
 
-    margin-bottom:40px;
+    margin-bottom:35px;
 }
 
-.grid{
+.people{
     display:grid;
 
     grid-template-columns:
         repeat(
-            auto-fill,
+            auto-fit,
             minmax(260px,1fr)
         );
 
-    gap:22px;
+    gap:20px;
 }
 
 .card{
     overflow:hidden;
 
-    background:#0c0c0c;
+    background:#0b0b0b;
 
     border:1px solid #222;
 
@@ -182,38 +181,36 @@ header{
 }
 
 .card:hover{
-    transform:translateY(-5px);
+    transform:translateY(-4px);
 
     border-color:#444;
 }
 
 .photo{
-    height:310px;
+    height:290px;
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
 
     background:
         radial-gradient(
-            circle at center,
-            #171717,
+            circle,
+            #181818,
             #070707
         );
 }
 
 .photo a{
-    text-decoration:none;
-
     color:#aaa;
+
+    text-decoration:none;
 
     border:1px solid #444;
 
     border-radius:25px;
 
-    padding:11px 18px;
+    padding:10px 18px;
 
     font-size:11px;
 }
@@ -225,17 +222,18 @@ header{
 
 .no-photo{
     color:#444;
-    font-size:12px;
+
+    font-size:11px;
 }
 
 .info{
-    padding:22px;
+    padding:20px;
 }
 
 .name{
-    font-size:21px;
+    font-size:20px;
 
-    margin-bottom:18px;
+    margin-bottom:15px;
 }
 
 .row{
@@ -243,9 +241,9 @@ header{
 
     justify-content:space-between;
 
-    padding:10px 0;
+    padding:9px 0;
 
-    border-bottom:1px solid #1c1c1c;
+    border-bottom:1px solid #191919;
 
     font-size:12px;
 }
@@ -259,7 +257,7 @@ header{
 }
 
 .row span:last-child{
-    color:#ddd;
+    color:#ccc;
 }
 
 .loading,
@@ -268,7 +266,137 @@ header{
 
     color:#555;
 
-    padding:70px 20px;
+    padding:60px 20px;
+}
+
+.form-area{
+    max-width:600px;
+
+    margin:90px auto 0;
+
+    padding:30px;
+
+    background:#0b0b0b;
+
+    border:1px solid #222;
+
+    border-radius:20px;
+}
+
+.form-area h2{
+    text-align:center;
+
+    font-weight:400;
+
+    margin-top:0;
+}
+
+.form-area p{
+    text-align:center;
+
+    color:#666;
+
+    font-size:11px;
+
+    line-height:2;
+}
+
+.field{
+    margin-top:17px;
+}
+
+.field label{
+    display:block;
+
+    color:#999;
+
+    font-size:11px;
+
+    margin-bottom:7px;
+}
+
+.field input{
+    width:100%;
+
+    height:45px;
+
+    padding:0 13px;
+
+    background:#060606;
+
+    color:#fff;
+
+    border:1px solid #292929;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-family:inherit;
+}
+
+.dates{
+    display:flex;
+
+    gap:10px;
+}
+
+.date{
+    flex:1;
+
+    height:45px;
+
+    border-radius:10px;
+
+    border:1px solid #292929;
+
+    background:#060606;
+
+    color:#888;
+
+    font-family:inherit;
+
+    cursor:pointer;
+}
+
+.date.selected{
+    background:#fff;
+
+    color:#000;
+
+    border-color:#fff;
+}
+
+.submit{
+    width:100%;
+
+    height:48px;
+
+    margin-top:20px;
+
+    border:0;
+
+    border-radius:10px;
+
+    background:#fff;
+
+    color:#000;
+
+    font-family:inherit;
+
+    cursor:pointer;
+}
+
+#status{
+    text-align:center;
+
+    font-size:11px;
+
+    line-height:2;
+
+    margin-top:15px;
+
+    color:#777;
 }
 
 footer{
@@ -285,46 +413,20 @@ footer{
     border-top:1px solid #151515;
 }
 
-.music{
-    position:fixed;
-
-    left:20px;
-    bottom:20px;
-
-    width:52px;
-    height:52px;
-
-    border-radius:50%;
-
-    border:1px solid #333;
-
-    background:#111;
-
-    color:#fff;
-
-    z-index:2000;
-
-    cursor:pointer;
-
-    font-size:16px;
-}
-
 @media(max-width:600px){
 
-    header{
-        padding:0 15px;
+    .hero h1{
+        letter-spacing:3px;
     }
 
-    .logo{
-        font-size:15px;
-    }
-
-    .grid{
+    .people{
         grid-template-columns:1fr;
     }
 
-    .photo{
-        height:280px;
+    .form-area{
+        margin-left:15px;
+        margin-right:15px;
+        padding:22px;
     }
 
 }
@@ -332,6 +434,7 @@ footer{
 </head>
 
 <body>
+
 
 <header>
 
@@ -345,14 +448,6 @@ footer{
 
     </div>
 
-    <button
-        class="add"
-        onclick="openForm()">
-
-        ثبت یادبود
-
-    </button>
-
 </header>
 
 
@@ -364,11 +459,11 @@ footer{
             جاویدنامان
         </h1>
 
-        <div class="hero-line"></div>
+        <div class="line"></div>
 
         <p>
-            یاد و نام انسان‌هایی که برای همیشه
-            در قلب و خاطره‌ها زنده خواهند ماند.
+            نام و یاد کسانی که برای همیشه
+            در خاطره‌ها زنده خواهند ماند.
         </p>
 
         <div class="search">
@@ -376,7 +471,7 @@ footer{
             <input
                 id="search"
                 placeholder="جستجوی نام یا شهر..."
-                oninput="search()">
+                oninput="searchPeople()">
 
         </div>
 
@@ -387,19 +482,130 @@ footer{
 
 <section class="section">
 
-    <div class="section-title">
+    <div class="title">
         جاویدنامان
     </div>
 
     <div
-        id="grid"
-        class="grid">
+        id="people"
+        class="people">
 
         <div class="loading">
             در حال بارگذاری...
         </div>
 
     </div>
+
+</section>
+
+
+<section
+    class="form-area"
+    id="request">
+
+    <h2>
+        ثبت یادبود
+    </h2>
+
+    <p>
+        اطلاعات را وارد کنید.
+        پس از بررسی و تأیید مدیر،
+        یادبود در سایت نمایش داده خواهد شد.
+    </p>
+
+
+    <div class="field">
+
+        <label>
+            نام و نام خانوادگی
+        </label>
+
+        <input
+            id="name"
+            placeholder="نام و نام خانوادگی">
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            سن
+        </label>
+
+        <input
+            id="age"
+            type="number"
+            placeholder="سن">
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            شهر
+        </label>
+
+        <input
+            id="city"
+            placeholder="شهر">
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            تاریخ
+        </label>
+
+        <div class="dates">
+
+            <button
+                class="date"
+                onclick="selectDate(this,'۱۸ دی ۱۴۰۴')">
+
+                ۱۸ دی ۱۴۰۴
+
+            </button>
+
+            <button
+                class="date"
+                onclick="selectDate(this,'۱۹ دی ۱۴۰۴')">
+
+                ۱۹ دی ۱۴۰۴
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            لینک پیام تلگرام عکس
+        </label>
+
+        <input
+            id="telegram"
+            placeholder="https://t.me/...">
+
+    </div>
+
+
+    <button
+        class="submit"
+        onclick="sendRequest()">
+
+        ارسال درخواست
+
+    </button>
+
+
+    <div id="status"></div>
 
 </section>
 
@@ -415,58 +621,52 @@ footer{
 </footer>
 
 
-<button
-    class="music"
-    onclick="toggleMusic()"
-    id="musicButton">
-
-    ▶
-
-</button>
-
-
 <audio
     id="music"
-    loop>
-
-    <source
-        src="music.mp3"
-        type="audio/mpeg">
-
+    src="music.mp3"
+    loop
+    preload="auto">
 </audio>
 
 
 <script>
 
-let people=[];
+
+const API =
+    "https://javidnam-api.ahmad1250wxdadzh.workers.dev";
 
 
-/* =========================
-   خواندن data.json
-========================= */
+let people = [];
 
-async function loadData(){
+let selectedDate = "";
 
-    const grid =
-        document.getElementById("grid");
+
+/* =====================
+   دریافت افراد
+===================== */
+
+async function loadPeople(){
+
+    const box =
+        document.getElementById(
+            "people"
+        );
 
     try{
 
-        const response =
+        const r =
             await fetch(
                 "data.json?v="+Date.now()
             );
 
-        if(!response.ok){
+        if(!r.ok){
 
-            throw new Error(
-                "data.json پیدا نشد"
-            );
+            throw new Error();
 
         }
 
         people =
-            await response.json();
+            await r.json();
 
         if(!Array.isArray(people)){
 
@@ -474,19 +674,17 @@ async function loadData(){
 
         }
 
-        render(people);
+        renderPeople(people);
 
     }
 
-    catch(error){
+    catch(e){
 
-        console.error(error);
-
-        grid.innerHTML=`
+        box.innerHTML=`
 
             <div class="empty">
 
-                هنوز جاویدنامی ثبت نشده است.
+                هنوز موردی ثبت نشده است.
 
             </div>
 
@@ -497,19 +695,21 @@ async function loadData(){
 }
 
 
-/* =========================
-   نمایش افراد
-========================= */
+/* =====================
+   نمایش
+===================== */
 
-function render(list){
+function renderPeople(list){
 
-    const grid =
-        document.getElementById("grid");
+    const box =
+        document.getElementById(
+            "people"
+        );
 
 
-    if(list.length===0){
+    if(!list.length){
 
-        grid.innerHTML=`
+        box.innerHTML=`
 
             <div class="empty">
 
@@ -524,7 +724,7 @@ function render(list){
     }
 
 
-    grid.innerHTML =
+    box.innerHTML =
         list.map(person => {
 
             const name =
@@ -569,9 +769,7 @@ function render(list){
 
                             `
                             <div class="no-photo">
-
                                 تصویر موجود نیست
-
                             </div>
                             `
                         }
@@ -582,48 +780,22 @@ function render(list){
                     <div class="info">
 
                         <div class="name">
-
                             ${name}
-
                         </div>
 
-
                         <div class="row">
-
-                            <span>
-                                سن
-                            </span>
-
-                            <span>
-                                ${age}
-                            </span>
-
+                            <span>سن</span>
+                            <span>${age}</span>
                         </div>
 
-
                         <div class="row">
-
-                            <span>
-                                شهر
-                            </span>
-
-                            <span>
-                                ${city}
-                            </span>
-
+                            <span>شهر</span>
+                            <span>${city}</span>
                         </div>
 
-
                         <div class="row">
-
-                            <span>
-                                تاریخ
-                            </span>
-
-                            <span>
-                                ${date}
-                            </span>
-
+                            <span>تاریخ</span>
+                            <span>${date}</span>
                         </div>
 
                     </div>
@@ -637,11 +809,11 @@ function render(list){
 }
 
 
-/* =========================
+/* =====================
    جستجو
-========================= */
+===================== */
 
-function search(){
+function searchPeople(){
 
     const q =
         document
@@ -673,14 +845,205 @@ function search(){
         });
 
 
-    render(result);
+    renderPeople(result);
 
 }
 
 
-/* =========================
-   امن کردن متن
-========================= */
+/* =====================
+   تاریخ
+===================== */
+
+function selectDate(button,date){
+
+    document
+    .querySelectorAll(".date")
+    .forEach(x =>
+        x.classList.remove(
+            "selected"
+        )
+    );
+
+
+    button.classList.add(
+        "selected"
+    );
+
+
+    selectedDate =
+        date;
+
+}
+
+
+/* =====================
+   ارسال درخواست
+===================== */
+
+async function sendRequest(){
+
+    const status =
+        document.getElementById(
+            "status"
+        );
+
+
+    const name =
+        document
+        .getElementById("name")
+        .value.trim();
+
+
+    const age =
+        document
+        .getElementById("age")
+        .value.trim();
+
+
+    const city =
+        document
+        .getElementById("city")
+        .value.trim();
+
+
+    const telegram =
+        document
+        .getElementById("telegram")
+        .value.trim();
+
+
+    if(
+        !name ||
+        !age ||
+        !city ||
+        !selectedDate
+    ){
+
+        status.innerText =
+            "لطفاً همه اطلاعات را کامل کنید.";
+
+        return;
+
+    }
+
+
+    if(
+        telegram &&
+        !telegram.startsWith(
+            "https://t.me/"
+        )
+    ){
+
+        status.innerText =
+            "لینک تلگرام صحیح نیست.";
+
+        return;
+
+    }
+
+
+    status.innerText =
+        "در حال ارسال درخواست...";
+
+
+    try{
+
+        const r =
+            await fetch(
+                API + "/requests",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        name:name,
+
+                        age:age,
+
+                        city:city,
+
+                        date:selectedDate,
+
+                        telegram:telegram
+
+                    })
+
+                }
+            );
+
+
+        const result =
+            await r.json();
+
+
+        if(!r.ok || !result.ok){
+
+            throw new Error(
+                result.error ||
+                "ارسال ناموفق بود"
+            );
+
+        }
+
+
+        status.innerText =
+            "درخواست شما با موفقیت ثبت شد.";
+
+
+        document
+        .getElementById("name")
+        .value="";
+
+
+        document
+        .getElementById("age")
+        .value="";
+
+
+        document
+        .getElementById("city")
+        .value="";
+
+
+        document
+        .getElementById("telegram")
+        .value="";
+
+
+        selectedDate="";
+
+
+        document
+        .querySelectorAll(".date")
+        .forEach(x =>
+            x.classList.remove(
+                "selected"
+            )
+        );
+
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        status.innerText =
+            "ارسال انجام نشد. دوباره تلاش کنید.";
+
+    }
+
+}
+
+
+/* =====================
+   امنیت
+===================== */
 
 function safe(value){
 
@@ -705,68 +1068,60 @@ function safeURL(value){
 }
 
 
-/* =========================
-   موزیک
-========================= */
+/* =====================
+   موزیک خودکار
+===================== */
 
 const music =
-    document.getElementById("music");
-
-const musicButton =
     document.getElementById(
-        "musicButton"
+        "music"
     );
 
 
-function toggleMusic(){
+async function startMusic(){
 
-    if(music.paused){
+    try{
 
-        music.play()
-        .then(()=>{
-
-            musicButton.innerText="Ⅱ";
-
-        })
-        .catch(()=>{
-
-            alert(
-                "فایل music.mp3 را در Repository قرار بده."
-            );
-
-        });
+        await music.play();
 
     }
 
-    else{
+    catch(e){
 
-        music.pause();
-
-        musicButton.innerText="▶";
+        /*
+        مرورگر اجازه پخش خودکار نداده.
+        با اولین تعامل کاربر شروع می‌شود.
+        */
 
     }
 
 }
 
 
-/* =========================
-   فرم کاربر
-========================= */
-
-function openForm(){
-
-    alert(
-        "فرم ثبت درخواست را در مرحله بعد به همین صفحه اضافه می‌کنیم."
-    );
-
-}
+startMusic();
 
 
-/* =========================
+document.addEventListener(
+    "click",
+    function(){
+
+        if(music.paused){
+
+            music.play()
+            .catch(()=>{});
+
+        }
+
+    },
+    {once:true}
+);
+
+
+/* =====================
    شروع
-========================= */
+===================== */
 
-loadData();
+loadPeople();
 
 </script>
 
