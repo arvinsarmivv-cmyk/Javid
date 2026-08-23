@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>جاویدنامان</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080a0f;color:#fff;font-family:Tahoma,Arial,sans-serif}
+header{min-height:320px;display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle,#293548,#111722 45%,#080a0f 80%)}
+h1{font-size:52px;margin:0 0 10px}
+.subtitle{color:#aab3c2;margin-bottom:28px}
+button{font-family:inherit;cursor:pointer}
+.add{border:0;background:#e5c46c;color:#111;padding:14px 25px;border-radius:12px;font-weight:bold;font-size:15px}
+main{max-width:1200px;margin:auto;padding:25px 18px 60px}
+.tools{display:flex;gap:10px}
+input,select{width:100%;padding:13px;background:#111620;border:1px solid #293241;border-radius:11px;color:white;outline:none}
+select{max-width:220px}
+.counter{color:#929cad;font-size:13px;margin:18px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+.card{background:#111620;border:1px solid #252f3e;border-radius:17px;overflow:hidden;transition:.2s}
+.card:hover{transform:translateY(-4px)}
+.photo{height:240px;background:radial-gradient(circle,#354154,#151c27 60%,#0d1118);display:flex;align-items:center;justify-content:center;color:#7e899a}
+.body{padding:15px}
+.name{font-size:17px;font-weight:bold}
+.info{font-size:13px;color:#a8b1c0;margin-top:6px}
+.tg{display:block;text-align:center;text-decoration:none;color:#e5ca75;border:1px solid #403921;padding:9px;border-radius:9px;margin-top:13px;font-size:13px}
+.empty{text-align:center;color:#7f8998;padding:60px}
+.modal{position:fixed;inset:0;background:#000c;display:flex;align-items:center;justify-content:center;padding:18px;z-index:99}
+.hide{display:none}
+.box{width:100%;max-width:500px;background:#111620;border:1px solid #303b4c;border-radius:20px;padding:25px;position:relative}
+.close{position:absolute;left:15px;top:8px;background:none;border:0;color:white;font-size:30px}
+.form{display:grid;gap:14px;margin-top:20px}
+label{font-size:13px;color:#adb6c5}
+label input{margin-top:7px}
+.submit{border:0;background:#e5c46c;color:#111;padding:13px;border-radius:10px;font-weight:bold}
+.msg{font-size:13px;color:#9da8b8;min-height:20px}
+@media(max-width:600px){h1{font-size:40px}.tools{flex-direction:column}select{max-width:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:200px}.body{padding:11px}}
+</style>
+</head>
+<body>
+
+<header>
+<div>
+<h1>جاویدنامان</h1>
+<div class="subtitle">یاد و نامشان جاودان</div>
+<button class="add" id="addBtn">＋ افزودن جاویدنام</button>
+</div>
+</header>
+
+<main>
+
+<div class="tools">
+<input id="search" placeholder="جستجوی نام یا شهر...">
+<select id="city">
+<option value="">همه شهرها</option>
+</select>
+</div>
+
+<div class="counter" id="counter"></div>
+
+<div class="grid" id="grid"></div>
+
+<div class="empty hide" id="empty">موردی پیدا نشد.</div>
+
+</main>
+
+<div class="modal hide" id="modal">
+<div class="box">
+
+<button class="close" id="close">×</button>
+
+<h2>افزودن جاویدنام</h2>
+<div class="msg">درخواست پس از بررسی مدیر منتشر می‌شود.</div>
+
+<form class="form" id="form">
+
+<label>
+نام و نام خانوادگی
+<input id="name" required>
+</label>
+
+<label>
+سن
+<input id="age" type="number" min="0" max="120" required>
+</label>
+
+<label>
+شهر
+<input id="cityInput" required>
+</label>
+
+<label>
+لینک پیام عکس در تلگرام
+<input id="telegram" type="url" placeholder="https://t.me/..." required>
+</label>
+
+<div class="msg">
+عکس را در گروه عمومی تلگرام ارسال کنید و لینک همان پیام را وارد کنید.
+</div>
+
+<button class="submit">ثبت درخواست</button>
+
+<div class="msg" id="formMsg"></div>
+
+</form>
+</div>
+</div>
+
+<script>
+const modal=document.getElementById("modal");
+const people=()=>JSON.parse(localStorage.getItem("javidnam_people")||"[]");
+const save=x=>localStorage.setItem("javidnam_people",JSON.stringify(x));
+
+document.getElementById("addBtn").onclick=()=>{
+modal.classList.remove("hide");
+};
+
+document.getElementById("close").onclick=()=>{
+modal.classList.add("hide");
+};
+
+document.getElementById("form").onsubmit=e=>{
+e.preventDefault();
+
+let link=document.getElementById("telegram").value.trim();
+
+if(!link.startsWith("https://t.me/")){
+document.getElementById("formMsg").textContent="لینک تلگرام معتبر نیست.";
+return;
+}
+
+let data=people();
+
+data.push({
+id:Date.now(),
+name:document.getElementById("name").value.trim(),
+age:document.getElementById("age").value,
+city:document.getElementById("cityInput").value.trim(),
+telegram:link,
+status:"pending"
+});
+
+save(data);
+
+document.getElementById("formMsg").textContent=
+"درخواست ثبت شد و منتظر تأیید مدیر است.";
+
+e.target.reset();
+
+setTimeout(()=>{
+modal.classList.add("hide");
+document.getElementById("formMsg").textContent="";
+},1200);
+};
+
+function render(){
+
+let data=people().filter(x=>x.status==="approved");
+
+let q=document.getElementById("search").value.trim().toLowerCase();
+let city=document.getElementById("city").value;
+
+let result=data.filter(x=>
+(!q||x.name.toLowerCase().includes(q)||x.city.toLowerCase().includes(q)) &&
+(!city||x.city===city)
+);
+
+document.getElementById("counter").textContent=
+result.length.toLocaleString("fa-IR")+" جاویدنام";
+
+document.getElementById("grid").innerHTML=result.map(x=>`
+<div class="card">
+<div class="photo">🕊️</div>
+<div class="body">
+<div class="name">${safe(x.name)}</div>
+<div class="info">${safe(x.age)} سال · ${safe(x.city)}</div>
+<a class="tg" href="${safe(x.telegram)}" target="_blank">
+مشاهده عکس اصلی
+</a>
+</div>
+</div>
+`).join("");
+
+document.getElementById("empty").classList.toggle("hide",result.length>0);
+
+let cities=[...new Set(data.map(x=>x.city))].sort();
+
+let select=document.getElementById("city");
+let old=select.value;
+
+select.innerHTML='<option value="">همه شهرها</option>'+
+cities.map(x=>`<option>${safe(x)}</option>`).join("");
+
+select.value=old;
+}
+
+function safe(x){
+return String(x).replace(/[&<>"']/g,m=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m]));
+}
+
+document.getElementById("search").oninput=render;
+document.getElementById("city").onchange=render;
+
+render();
+</script>
+
+</body>
+</html>
