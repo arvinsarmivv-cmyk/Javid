@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>جاویدنامان</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+background:#080a0f;
+color:white;
+font-family:Tahoma,Arial,sans-serif
+}
+header{
+height:320px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+background:radial-gradient(circle,#293548,#101722 45%,#080a0f 80%)
+}
+h1{
+font-size:50px;
+margin:0 0 10px
+}
+p{
+color:#aab3c2
+}
+button{
+font-family:inherit;
+cursor:pointer
+}
+.add{
+border:0;
+background:#e5c46c;
+color:#111;
+padding:14px 25px;
+border-radius:12px;
+font-weight:bold;
+font-size:15px
+}
+main{
+max-width:1200px;
+margin:auto;
+padding:25px
+}
+.search{
+width:100%;
+padding:14px;
+background:#111620;
+border:1px solid #293241;
+border-radius:12px;
+color:white
+}
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.8);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+z-index:999
+}
+.modal.hide{
+display:none
+}
+.box{
+width:100%;
+max-width:500px;
+background:#111620;
+border:1px solid #303b4c;
+border-radius:20px;
+padding:25px;
+position:relative
+}
+.close{
+position:absolute;
+left:15px;
+top:10px;
+border:0;
+background:none;
+color:white;
+font-size:30px
+}
+.form{
+display:grid;
+gap:15px;
+margin-top:20px
+}
+label{
+color:#aeb7c5;
+font-size:14px
+}
+input{
+width:100%;
+margin-top:7px;
+padding:13px;
+background:#080c12;
+border:1px solid #303b4c;
+border-radius:10px;
+color:white;
+outline:none
+}
+.submit{
+border:0;
+background:#e5c46c;
+padding:13px;
+border-radius:10px;
+font-weight:bold
+}
+.card{
+margin-top:20px;
+padding:20px;
+background:#111620;
+border-radius:15px;
+border:1px solid #293241
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div>
+<h1>جاویدنامان</h1>
+<p>یاد و نامشان جاودان</p>
+
+<button class="add" id="addBtn">
+＋ افزودن جاویدنام
+</button>
+
+</div>
+</header>
+
+<main>
+
+<input
+class="search"
+id="search"
+placeholder="جستجوی نام یا شهر..."
+>
+
+<div id="list"></div>
+
+</main>
+
+<div class="modal hide" id="addModal">
+
+<div class="box">
+
+<button class="close" id="closeBtn">×</button>
+
+<h2>افزودن جاویدنام</h2>
+
+<p>
+اطلاعات پس از بررسی مدیر منتشر خواهد شد.
+</p>
+
+<form class="form" id="addForm">
+
+<label>
+نام و نام خانوادگی
+<input id="name" required>
+</label>
+
+<label>
+سن
+<input id="age" type="number" min="0" required>
+</label>
+
+<label>
+شهر
+<input id="city" required>
+</label>
+
+<label>
+لینک عکس در تلگرام
+<input
+id="telegram"
+type="url"
+placeholder="https://t.me/..."
+required
+>
+</label>
+
+<button class="submit" type="submit">
+ثبت جاویدنام
+</button>
+
+<div id="message"></div>
+
+</form>
+
+</div>
+</div>
+
+<script>
+
+const addBtn=document.getElementById("addBtn");
+const closeBtn=document.getElementById("closeBtn");
+const modal=document.getElementById("addModal");
+const form=document.getElementById("addForm");
+const message=document.getElementById("message");
+
+addBtn.addEventListener("click",function(){
+modal.classList.remove("hide");
+});
+
+closeBtn.addEventListener("click",function(){
+modal.classList.add("hide");
+});
+
+modal.addEventListener("click",function(e){
+if(e.target===modal){
+modal.classList.add("hide");
+}
+});
+
+form.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let name=document.getElementById("name").value;
+let age=document.getElementById("age").value;
+let city=document.getElementById("city").value;
+let telegram=document.getElementById("telegram").value;
+
+if(!telegram.startsWith("https://t.me/")){
+message.innerText="لینک تلگرام معتبر نیست.";
+return;
+}
+
+let people=JSON.parse(
+localStorage.getItem("people")||"[]"
+);
+
+people.push({
+name:name,
+age:age,
+city:city,
+telegram:telegram,
+status:"pending"
+});
+
+localStorage.setItem(
+"people",
+JSON.stringify(people)
+);
+
+message.innerText=
+"درخواست با موفقیت ثبت شد و منتظر تأیید مدیر است.";
+
+form.reset();
+
+setTimeout(function(){
+modal.classList.add("hide");
+message.innerText="";
+},1200);
+
+});
+
+</script>
+
+</body>
+</html>
