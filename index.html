@@ -3,212 +3,625 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>جاویدنامان</title>
+<title>جاویدنامان ایران</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#080a0f;color:#fff;font-family:Tahoma,Arial,sans-serif}
-header{min-height:320px;display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle,#293548,#111722 45%,#080a0f 80%)}
-h1{font-size:52px;margin:0 0 10px}
-.subtitle{color:#aab3c2;margin-bottom:28px}
-button{font-family:inherit;cursor:pointer}
-.add{border:0;background:#e5c46c;color:#111;padding:14px 25px;border-radius:12px;font-weight:bold;font-size:15px}
-main{max-width:1200px;margin:auto;padding:25px 18px 60px}
-.tools{display:flex;gap:10px}
-input,select{width:100%;padding:13px;background:#111620;border:1px solid #293241;border-radius:11px;color:white;outline:none}
-select{max-width:220px}
-.counter{color:#929cad;font-size:13px;margin:18px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
-.card{background:#111620;border:1px solid #252f3e;border-radius:17px;overflow:hidden;transition:.2s}
-.card:hover{transform:translateY(-4px)}
-.photo{height:240px;background:radial-gradient(circle,#354154,#151c27 60%,#0d1118);display:flex;align-items:center;justify-content:center;color:#7e899a}
-.body{padding:15px}
-.name{font-size:17px;font-weight:bold}
-.info{font-size:13px;color:#a8b1c0;margin-top:6px}
-.tg{display:block;text-align:center;text-decoration:none;color:#e5ca75;border:1px solid #403921;padding:9px;border-radius:9px;margin-top:13px;font-size:13px}
-.empty{text-align:center;color:#7f8998;padding:60px}
-.modal{position:fixed;inset:0;background:#000c;display:flex;align-items:center;justify-content:center;padding:18px;z-index:99}
-.hide{display:none}
-.box{width:100%;max-width:500px;background:#111620;border:1px solid #303b4c;border-radius:20px;padding:25px;position:relative}
-.close{position:absolute;left:15px;top:8px;background:none;border:0;color:white;font-size:30px}
-.form{display:grid;gap:14px;margin-top:20px}
-label{font-size:13px;color:#adb6c5}
-label input{margin-top:7px}
-.submit{border:0;background:#e5c46c;color:#111;padding:13px;border-radius:10px;font-weight:bold}
-.msg{font-size:13px;color:#9da8b8;min-height:20px}
-@media(max-width:600px){h1{font-size:40px}.tools{flex-direction:column}select{max-width:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:200px}.body{padding:11px}}
+
+body{
+    margin:0;
+    background:#050505;
+    color:#fff;
+    font-family:Tahoma,Arial,sans-serif;
+    min-height:100vh;
+}
+
+header{
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    height:65px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    background:rgba(0,0,0,.65);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid #202020;
+    z-index:20;
+}
+
+.logo{
+    font-size:18px;
+}
+
+.logo small{
+    display:block;
+    color:#666;
+    font-size:9px;
+    margin-top:5px;
+}
+
+button{
+    cursor:pointer;
+    font-family:inherit;
+}
+
+.header-btn{
+    border:1px solid #333;
+    background:#111;
+    color:#ddd;
+    padding:9px 15px;
+    border-radius:20px;
+}
+
+main{
+    min-height:100vh;
+    padding:110px 20px 70px;
+}
+
+.hero{
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 70px;
+}
+
+.hero h1{
+    font-size:clamp(40px,9vw,85px);
+    font-weight:300;
+    letter-spacing:5px;
+    margin:20px 0;
+}
+
+.hero p{
+    color:#777;
+    line-height:2;
+    font-size:13px;
+}
+
+.line{
+    width:70px;
+    height:1px;
+    background:#444;
+    margin:25px auto;
+}
+
+.search{
+    margin:30px auto 0;
+    max-width:500px;
+}
+
+.search input{
+    width:100%;
+    height:50px;
+    border:1px solid #292929;
+    background:#0d0d0d;
+    border-radius:30px;
+    color:white;
+    padding:0 20px;
+    outline:none;
+    text-align:right;
+}
+
+.names{
+    max-width:1000px;
+    margin:auto;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:14px;
+}
+
+.name{
+    border:1px solid #242424;
+    background:#0c0c0c;
+    color:#aaa;
+    border-radius:30px;
+    padding:12px 20px;
+    transition:.3s;
+}
+
+.name:hover{
+    color:white;
+    border-color:#666;
+    transform:translateY(-3px);
+}
+
+.add{
+    max-width:600px;
+    margin:70px auto 0;
+    padding:35px 25px;
+    border:1px solid #222;
+    border-radius:22px;
+    background:#0b0b0b;
+    text-align:center;
+}
+
+.add h2{
+    font-weight:400;
+}
+
+.add p{
+    color:#777;
+    font-size:12px;
+    line-height:2;
+}
+
+.primary{
+    background:white;
+    color:black;
+    border:0;
+    padding:13px 25px;
+    border-radius:25px;
+    margin-top:15px;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    backdrop-filter:blur(10px);
+    z-index:100;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.box{
+    width:100%;
+    max-width:500px;
+    max-height:90vh;
+    overflow:auto;
+    background:#111;
+    border:1px solid #333;
+    border-radius:22px;
+    padding:25px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    left:15px;
+    top:15px;
+    border:1px solid #333;
+    background:#191919;
+    color:#aaa;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+}
+
+.box h2{
+    font-weight:400;
+    margin-top:5px;
+}
+
+.field{
+    margin-top:15px;
+}
+
+.field label{
+    display:block;
+    color:#999;
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.field input{
+    width:100%;
+    padding:13px;
+    border-radius:11px;
+    border:1px solid #292929;
+    background:#080808;
+    color:white;
+    outline:none;
+}
+
+.dates{
+    display:flex;
+    gap:10px;
+}
+
+.date{
+    flex:1;
+    padding:13px;
+    border:1px solid #292929;
+    border-radius:11px;
+    background:#080808;
+    color:#aaa;
+    text-align:center;
+}
+
+.date.selected{
+    border-color:white;
+    color:white;
+}
+
+.submit{
+    width:100%;
+    margin-top:22px;
+    padding:14px;
+    border:0;
+    border-radius:12px;
+    background:white;
+    color:black;
+}
+
+.note{
+    color:#666;
+    font-size:10px;
+    line-height:1.8;
+    margin-top:12px;
+}
+
+footer{
+    text-align:center;
+    color:#444;
+    padding:40px;
+    border-top:1px solid #151515;
+    font-size:11px;
+}
+
+#musicBtn{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    z-index:30;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:1px solid #333;
+    background:#111;
+    color:white;
+}
+
+@media(max-width:600px){
+    header{padding:0 15px}
+    .names{gap:9px}
+    .name{font-size:12px;padding:10px 14px}
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<div>
-<h1>جاویدنامان</h1>
-<div class="subtitle">یاد و نامشان جاودان</div>
-<button class="add" id="addBtn">＋ افزودن جاویدنام</button>
-</div>
+    <div class="logo">
+        جاویدنامان ایران
+        <small>نامشان جاودانه</small>
+    </div>
+
+    <button class="header-btn" onclick="openForm()">
+        + ثبت یادبود
+    </button>
 </header>
 
 <main>
 
-<div class="tools">
-<input id="search" placeholder="جستجوی نام یا شهر...">
-<select id="city">
-<option value="">همه شهرها</option>
-</select>
-</div>
+<section class="hero">
 
-<div class="counter" id="counter"></div>
+    <h1>جاویدنامان</h1>
 
-<div class="grid" id="grid"></div>
+    <div class="line"></div>
 
-<div class="empty hide" id="empty">موردی پیدا نشد.</div>
+    <p>
+        نام و یاد انسان‌هایی که برای همیشه در خاطره‌ها زنده خواهند ماند.
+    </p>
+
+    <div class="search">
+        <input
+            id="search"
+            placeholder="جستجوی نام..."
+            oninput="searchNames()"
+        >
+    </div>
+
+</section>
+
+<section>
+
+    <div id="names" class="names">
+
+        <!--
+        افراد تأییدشده اینجا قرار می‌گیرند.
+        بعداً GitHub Actions این بخش را
+        به صورت خودکار تولید می‌کند.
+        -->
+
+        <div class="name">جاویدنام نمونه</div>
+        <div class="name">نام نمونه دوم</div>
+        <div class="name">نام نمونه سوم</div>
+
+    </div>
+
+</section>
+
+<section class="add">
+
+    <h2>ثبت یک یادبود</h2>
+
+    <p>
+        اگر می‌خواهید نام عزیزی را در این مجموعه ثبت کنید،
+        اطلاعات او را ارسال کنید. درخواست پس از بررسی مدیر
+        در سایت نمایش داده خواهد شد.
+    </p>
+
+    <button class="primary" onclick="openForm()">
+        ثبت جاویدنام
+    </button>
+
+</section>
 
 </main>
 
-<div class="modal hide" id="modal">
+<footer>
+    جاویدنامان ایران © ۱۴۰۴
+</footer>
+
+
+<!-- فرم -->
+
+<div class="modal" id="modal">
+
 <div class="box">
 
-<button class="close" id="close">×</button>
+<button class="close" onclick="closeForm()">×</button>
 
-<h2>افزودن جاویدنام</h2>
-<div class="msg">درخواست پس از بررسی مدیر منتشر می‌شود.</div>
+<h2>ثبت جاویدنام</h2>
 
-<form class="form" id="form">
-
-<label>
-نام و نام خانوادگی
-<input id="name" required>
-</label>
-
-<label>
-سن
-<input id="age" type="number" min="0" max="120" required>
-</label>
-
-<label>
-شهر
-<input id="cityInput" required>
-</label>
-
-<label>
-لینک پیام عکس در تلگرام
-<input id="telegram" type="url" placeholder="https://t.me/..." required>
-</label>
-
-<div class="msg">
-عکس را در گروه عمومی تلگرام ارسال کنید و لینک همان پیام را وارد کنید.
+<div class="field">
+<label>نام و نام خانوادگی</label>
+<input id="name" placeholder="مثلاً علی رضایی">
 </div>
 
-<button class="submit">ثبت درخواست</button>
+<div class="field">
+<label>سن</label>
+<input id="age" type="number" placeholder="سن">
+</div>
 
-<div class="msg" id="formMsg"></div>
+<div class="field">
+<label>شهر</label>
+<input id="city" placeholder="شهر">
+</div>
 
-</form>
+<div class="field">
+
+<label>تاریخ</label>
+
+<div class="dates">
+
+<button
+class="date"
+onclick="selectDate(this,'۱۸ دی ۱۴۰۴')">
+۱۸ دی ۱۴۰۴
+</button>
+
+<button
+class="date"
+onclick="selectDate(this,'۱۹ دی ۱۴۰۴')">
+۱۹ دی ۱۴۰۴
+</button>
+
+</div>
+
+</div>
+
+<div class="field">
+
+<label>لینک پیام تلگرام عکس</label>
+
+<input
+id="telegram"
+placeholder="https://t.me/...">
+
+</div>
+
+<button
+class="submit"
+onclick="sendRequest()">
+ارسال برای بررسی
+</button>
+
+<div class="note">
+لینک باید مربوط به پیام تلگرامی باشد که عکس در آن قرار دارد.
+پس از بررسی مدیر، در صورت تأیید اطلاعات در سایت نمایش داده می‌شود.
+</div>
+
 </div>
 </div>
+
+
+<!-- موزیک -->
+
+<button id="musicBtn" onclick="toggleMusic()">▶</button>
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 
 <script>
-const modal=document.getElementById("modal");
-const people=()=>JSON.parse(localStorage.getItem("javidnam_people")||"[]");
-const save=x=>localStorage.setItem("javidnam_people",JSON.stringify(x));
 
-document.getElementById("addBtn").onclick=()=>{
-modal.classList.remove("hide");
-};
+/*
+========================================
+نام Repository گیت‌هاب را اینجا بگذار
+مثال:
+kami/javidnam
+========================================
+*/
 
-document.getElementById("close").onclick=()=>{
-modal.classList.add("hide");
-};
+const GITHUB_REPO = "USERNAME/javidnam";
 
-document.getElementById("form").onsubmit=e=>{
-e.preventDefault();
+let selectedDate = "";
 
-let link=document.getElementById("telegram").value.trim();
 
-if(!link.startsWith("https://t.me/")){
-document.getElementById("formMsg").textContent="لینک تلگرام معتبر نیست.";
-return;
+/* فرم */
+
+function openForm(){
+    document.getElementById("modal").classList.add("show");
 }
 
-let data=people();
-
-data.push({
-id:Date.now(),
-name:document.getElementById("name").value.trim(),
-age:document.getElementById("age").value,
-city:document.getElementById("cityInput").value.trim(),
-telegram:link,
-status:"pending"
-});
-
-save(data);
-
-document.getElementById("formMsg").textContent=
-"درخواست ثبت شد و منتظر تأیید مدیر است.";
-
-e.target.reset();
-
-setTimeout(()=>{
-modal.classList.add("hide");
-document.getElementById("formMsg").textContent="";
-},1200);
-};
-
-function render(){
-
-let data=people().filter(x=>x.status==="approved");
-
-let q=document.getElementById("search").value.trim().toLowerCase();
-let city=document.getElementById("city").value;
-
-let result=data.filter(x=>
-(!q||x.name.toLowerCase().includes(q)||x.city.toLowerCase().includes(q)) &&
-(!city||x.city===city)
-);
-
-document.getElementById("counter").textContent=
-result.length.toLocaleString("fa-IR")+" جاویدنام";
-
-document.getElementById("grid").innerHTML=result.map(x=>`
-<div class="card">
-<div class="photo">🕊️</div>
-<div class="body">
-<div class="name">${safe(x.name)}</div>
-<div class="info">${safe(x.age)} سال · ${safe(x.city)}</div>
-<a class="tg" href="${safe(x.telegram)}" target="_blank">
-مشاهده عکس اصلی
-</a>
-</div>
-</div>
-`).join("");
-
-document.getElementById("empty").classList.toggle("hide",result.length>0);
-
-let cities=[...new Set(data.map(x=>x.city))].sort();
-
-let select=document.getElementById("city");
-let old=select.value;
-
-select.innerHTML='<option value="">همه شهرها</option>'+
-cities.map(x=>`<option>${safe(x)}</option>`).join("");
-
-select.value=old;
+function closeForm(){
+    document.getElementById("modal").classList.remove("show");
 }
 
-function safe(x){
-return String(x).replace(/[&<>"']/g,m=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-}[m]));
+
+/* انتخاب تاریخ */
+
+function selectDate(button,date){
+
+    document
+        .querySelectorAll(".date")
+        .forEach(x => x.classList.remove("selected"));
+
+    button.classList.add("selected");
+
+    selectedDate = date;
 }
 
-document.getElementById("search").oninput=render;
-document.getElementById("city").onchange=render;
 
-render();
+/* ارسال درخواست */
+
+function sendRequest(){
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const age =
+        document.getElementById("age").value.trim();
+
+    const city =
+        document.getElementById("city").value.trim();
+
+    const telegram =
+        document.getElementById("telegram").value.trim();
+
+    if(!name || !age || !city || !selectedDate || !telegram){
+
+        alert("لطفاً تمام اطلاعات را وارد کنید.");
+
+        return;
+    }
+
+    if(!telegram.startsWith("https://t.me/")){
+
+        alert("لینک تلگرام معتبر نیست.");
+
+        return;
+    }
+
+
+    /*
+    اطلاعات درخواست
+    */
+
+    const body = `
+
+### درخواست ثبت جاویدنام
+
+**نام:** ${name}
+
+**سن:** ${age}
+
+**شهر:** ${city}
+
+**تاریخ:** ${selectedDate}
+
+**لینک عکس تلگرام:** ${telegram}
+
+**وضعیت:** pending
+
+این درخواست توسط فرم سایت ارسال شده است.
+
+`;
+
+    const title =
+        encodeURIComponent(
+            "درخواست جاویدنام - " + name
+        );
+
+    const encodedBody =
+        encodeURIComponent(body);
+
+
+    /*
+    GitHub Issue
+    */
+
+    const url =
+        "https://github.com/" +
+        GITHUB_REPO +
+        "/issues/new?title=" +
+        title +
+        "&body=" +
+        encodedBody;
+
+
+    window.open(url,"_blank");
+
+}
+
+
+/* جستجو */
+
+function searchNames(){
+
+    const q =
+        document
+        .getElementById("search")
+        .value
+        .trim()
+        .toLowerCase();
+
+    document
+        .querySelectorAll(".name")
+        .forEach(item => {
+
+            item.style.display =
+                item.innerText
+                .toLowerCase()
+                .includes(q)
+                ? ""
+                : "none";
+
+        });
+}
+
+
+/* موزیک */
+
+const music =
+    document.getElementById("music");
+
+const musicBtn =
+    document.getElementById("musicBtn");
+
+function toggleMusic(){
+
+    if(music.paused){
+
+        music.play()
+        .then(()=>{
+            musicBtn.innerText="Ⅱ";
+        })
+        .catch(()=>{
+            alert("فایل music.mp3 را کنار index.html قرار بده.");
+        });
+
+    }else{
+
+        music.pause();
+
+        musicBtn.innerText="▶";
+    }
+}
+
 </script>
 
 </body>
