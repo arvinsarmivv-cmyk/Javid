@@ -2,18 +2,28 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>جاویدنامان ایران</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>جاویدنامان</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
 
 body{
     margin:0;
     background:#050505;
     color:#fff;
-    font-family:Tahoma,Arial,sans-serif;
-    min-height:100vh;
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
 }
 
 header{
@@ -21,608 +31,877 @@ header{
     top:0;
     right:0;
     left:0;
-    height:65px;
+    height:70px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:0 25px;
-    background:rgba(0,0,0,.65);
-    backdrop-filter:blur(15px);
-    border-bottom:1px solid #202020;
-    z-index:20;
+
+    background:rgba(5,5,5,.82);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid #1d1d1d;
+
+    z-index:100;
 }
 
 .logo{
     font-size:18px;
+    font-weight:bold;
 }
 
-.logo small{
+.logo span{
     display:block;
-    color:#666;
+    margin-top:4px;
+
     font-size:9px;
-    margin-top:5px;
+    font-weight:normal;
+
+    color:#666;
 }
 
-button{
-    cursor:pointer;
-    font-family:inherit;
-}
+.admin{
+    text-decoration:none;
 
-.header-btn{
-    border:1px solid #333;
-    background:#111;
-    color:#ddd;
-    padding:9px 15px;
+    color:#777;
+
+    font-size:11px;
+
+    border:1px solid #222;
+
+    padding:9px 14px;
+
     border-radius:20px;
 }
 
-main{
-    min-height:100vh;
-    padding:110px 20px 70px;
+.hero{
+    min-height:70vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:
+        120px 20px
+        70px;
 }
 
-.hero{
-    text-align:center;
-    max-width:700px;
-    margin:0 auto 70px;
+.hero-content{
+    max-width:800px;
 }
 
 .hero h1{
-    font-size:clamp(40px,9vw,85px);
+    margin:0;
+
+    font-size:
+        clamp(48px,12vw,105px);
+
     font-weight:300;
-    letter-spacing:5px;
-    margin:20px 0;
+
+    letter-spacing:6px;
+}
+
+.hero-line{
+    width:70px;
+    height:1px;
+
+    background:#555;
+
+    margin:30px auto;
 }
 
 .hero p{
     color:#777;
-    line-height:2;
+
     font-size:13px;
+
+    line-height:2.2;
 }
 
-.line{
-    width:70px;
-    height:1px;
-    background:#444;
-    margin:25px auto;
-}
-
-.search{
-    margin:30px auto 0;
+.search-box{
     max-width:500px;
+
+    margin:
+        35px auto
+        0;
 }
 
-.search input{
+.search-box input{
     width:100%;
+
     height:50px;
-    border:1px solid #292929;
-    background:#0d0d0d;
+
+    padding:
+        0 20px;
+
+    border:
+        1px solid #292929;
+
     border-radius:30px;
-    color:white;
-    padding:0 20px;
-    outline:none;
-    text-align:right;
-}
 
-.names{
-    max-width:1000px;
-    margin:auto;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:14px;
-}
-
-.name{
-    border:1px solid #242424;
     background:#0c0c0c;
-    color:#aaa;
-    border-radius:30px;
-    padding:12px 20px;
-    transition:.3s;
-}
 
-.name:hover{
-    color:white;
-    border-color:#666;
-    transform:translateY(-3px);
-}
+    color:#fff;
 
-.add{
-    max-width:600px;
-    margin:70px auto 0;
-    padding:35px 25px;
-    border:1px solid #222;
-    border-radius:22px;
-    background:#0b0b0b;
-    text-align:center;
-}
-
-.add h2{
-    font-weight:400;
-}
-
-.add p{
-    color:#777;
-    font-size:12px;
-    line-height:2;
-}
-
-.primary{
-    background:white;
-    color:black;
-    border:0;
-    padding:13px 25px;
-    border-radius:25px;
-    margin-top:15px;
-}
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.85);
-    backdrop-filter:blur(10px);
-    z-index:100;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.box{
-    width:100%;
-    max-width:500px;
-    max-height:90vh;
-    overflow:auto;
-    background:#111;
-    border:1px solid #333;
-    border-radius:22px;
-    padding:25px;
-    position:relative;
-}
-
-.close{
-    position:absolute;
-    left:15px;
-    top:15px;
-    border:1px solid #333;
-    background:#191919;
-    color:#aaa;
-    width:32px;
-    height:32px;
-    border-radius:50%;
-}
-
-.box h2{
-    font-weight:400;
-    margin-top:5px;
-}
-
-.field{
-    margin-top:15px;
-}
-
-.field label{
-    display:block;
-    color:#999;
-    font-size:12px;
-    margin-bottom:7px;
-}
-
-.field input{
-    width:100%;
-    padding:13px;
-    border-radius:11px;
-    border:1px solid #292929;
-    background:#080808;
-    color:white;
     outline:none;
+
+    font-family:inherit;
 }
 
-.dates{
+.search-box input:focus{
+    border-color:#555;
+}
+
+.section{
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:
+        20px;
+}
+
+.section-title{
+    text-align:center;
+
+    font-size:25px;
+
+    font-weight:400;
+
+    margin-bottom:35px;
+}
+
+.people{
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(260px,1fr)
+        );
+
+    gap:18px;
+}
+
+.person{
+    position:relative;
+
+    overflow:hidden;
+
+    background:#0c0c0c;
+
+    border:
+        1px solid #222;
+
+    border-radius:20px;
+
+    transition:
+        transform .25s,
+        border-color .25s;
+}
+
+.person:hover{
+    transform:translateY(-5px);
+
+    border-color:#444;
+}
+
+.person-image{
+    height:250px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111,
+            #050505
+        );
+
     display:flex;
-    gap:10px;
+
+    align-items:center;
+
+    justify-content:center;
 }
 
-.date{
-    flex:1;
-    padding:13px;
-    border:1px solid #292929;
-    border-radius:11px;
-    background:#080808;
-    color:#aaa;
-    text-align:center;
-}
+.person-image a{
+    color:#888;
 
-.date.selected{
-    border-color:white;
-    color:white;
-}
+    text-decoration:none;
 
-.submit{
-    width:100%;
-    margin-top:22px;
-    padding:14px;
-    border:0;
-    border-radius:12px;
-    background:white;
-    color:black;
-}
+    border:
+        1px solid #333;
 
-.note{
-    color:#666;
-    font-size:10px;
-    line-height:1.8;
-    margin-top:12px;
-}
+    padding:10px 15px;
 
-footer{
-    text-align:center;
-    color:#444;
-    padding:40px;
-    border-top:1px solid #151515;
+    border-radius:20px;
+
     font-size:11px;
 }
 
-#musicBtn{
-    position:fixed;
-    bottom:20px;
-    left:20px;
-    z-index:30;
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    border:1px solid #333;
-    background:#111;
-    color:white;
+.person-info{
+    padding:20px;
 }
 
-@media(max-width:600px){
-    header{padding:0 15px}
-    .names{gap:9px}
-    .name{font-size:12px;padding:10px 14px}
+.person-name{
+    font-size:20px;
+
+    margin-bottom:15px;
 }
+
+.info{
+    display:flex;
+
+    justify-content:space-between;
+
+    border-bottom:
+        1px solid #1b1b1b;
+
+    padding:
+        9px 0;
+
+    font-size:12px;
+}
+
+.info span:first-child{
+    color:#666;
+}
+
+.info span:last-child{
+    color:#ccc;
+}
+
+.loading{
+    text-align:center;
+
+    color:#666;
+
+    padding:50px;
+}
+
+.empty{
+    text-align:center;
+
+    color:#555;
+
+    padding:50px;
+
+    border:
+        1px solid #191919;
+
+    border-radius:20px;
+}
+
+.music-button{
+    position:fixed;
+
+    bottom:22px;
+    left:22px;
+
+    width:52px;
+    height:52px;
+
+    border-radius:50%;
+
+    border:
+        1px solid #333;
+
+    background:#101010;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    z-index:200;
+
+    font-size:16px;
+
+    box-shadow:
+        0 5px 30px
+        rgba(0,0,0,.5);
+}
+
+.music-button.playing{
+    border-color:#777;
+}
+
+.music-text{
+    position:fixed;
+
+    bottom:32px;
+    left:85px;
+
+    color:#555;
+
+    font-size:10px;
+
+    opacity:0;
+
+    transition:.3s;
+
+    pointer-events:none;
+}
+
+.music-text.show{
+    opacity:1;
+}
+
+footer{
+    margin-top:100px;
+
+    padding:
+        40px 20px;
+
+    text-align:center;
+
+    color:#444;
+
+    font-size:10px;
+
+    border-top:
+        1px solid #151515;
+}
+
+
+/* موبایل */
+
+@media(max-width:600px){
+
+    header{
+        padding:0 15px;
+    }
+
+    .logo{
+        font-size:15px;
+    }
+
+    .hero h1{
+        letter-spacing:3px;
+    }
+
+    .people{
+        grid-template-columns:1fr;
+    }
+
+    .person-image{
+        height:230px;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
+
 <header>
+
     <div class="logo">
-        جاویدنامان ایران
-        <small>نامشان جاودانه</small>
+
+        جاویدنامان
+
+        <span>
+            یادشان جاودانه
+        </span>
+
     </div>
 
-    <button class="header-btn" onclick="openForm()">
-        + ثبت یادبود
-    </button>
+    <a
+        class="admin"
+        href="admin.html">
+
+        مدیریت
+
+    </a>
+
 </header>
 
-<main>
+
 
 <section class="hero">
 
-    <h1>جاویدنامان</h1>
+    <div class="hero-content">
 
-    <div class="line"></div>
+        <h1>
+            جاویدنامان
+        </h1>
 
-    <p>
-        نام و یاد انسان‌هایی که برای همیشه در خاطره‌ها زنده خواهند ماند.
-    </p>
+        <div class="hero-line"></div>
 
-    <div class="search">
-        <input
-            id="search"
-            placeholder="جستجوی نام..."
-            oninput="searchNames()"
-        >
-    </div>
+        <p>
+            نام و یاد کسانی که برای همیشه
+            در خاطره‌ها زنده خواهند ماند.
+        </p>
 
-</section>
+        <div class="search-box">
 
-<section>
+            <input
+                id="search"
+                type="text"
+                placeholder="جستجوی نام یا شهر..."
+                oninput="searchPeople()">
 
-    <div id="names" class="names">
-
-        <!--
-        افراد تأییدشده اینجا قرار می‌گیرند.
-        بعداً GitHub Actions این بخش را
-        به صورت خودکار تولید می‌کند.
-        -->
-
-        <div class="name">جاویدنام نمونه</div>
-        <div class="name">نام نمونه دوم</div>
-        <div class="name">نام نمونه سوم</div>
+        </div>
 
     </div>
 
 </section>
 
-<section class="add">
 
-    <h2>ثبت یک یادبود</h2>
 
-    <p>
-        اگر می‌خواهید نام عزیزی را در این مجموعه ثبت کنید،
-        اطلاعات او را ارسال کنید. درخواست پس از بررسی مدیر
-        در سایت نمایش داده خواهد شد.
-    </p>
+<section class="section">
 
-    <button class="primary" onclick="openForm()">
-        ثبت جاویدنام
-    </button>
+    <div class="section-title">
+        جاویدنامان
+    </div>
+
+    <div
+        id="people"
+        class="people">
+
+        <div class="loading">
+            در حال دریافت اطلاعات...
+        </div>
+
+    </div>
 
 </section>
 
-</main>
+
 
 <footer>
-    جاویدنامان ایران © ۱۴۰۴
+
+    جاویدنامان ایران
+
+    <br><br>
+
+    نامشان جاودانه
+
 </footer>
 
 
-<!-- فرم -->
-
-<div class="modal" id="modal">
-
-<div class="box">
-
-<button class="close" onclick="closeForm()">×</button>
-
-<h2>ثبت جاویدنام</h2>
-
-<div class="field">
-<label>نام و نام خانوادگی</label>
-<input id="name" placeholder="مثلاً علی رضایی">
-</div>
-
-<div class="field">
-<label>سن</label>
-<input id="age" type="number" placeholder="سن">
-</div>
-
-<div class="field">
-<label>شهر</label>
-<input id="city" placeholder="شهر">
-</div>
-
-<div class="field">
-
-<label>تاریخ</label>
-
-<div class="dates">
 
 <button
-class="date"
-onclick="selectDate(this,'۱۸ دی ۱۴۰۴')">
-۱۸ دی ۱۴۰۴
+    id="musicButton"
+    class="music-button"
+    onclick="toggleMusic()">
+
+    ▶
+
 </button>
 
-<button
-class="date"
-onclick="selectDate(this,'۱۹ دی ۱۴۰۴')">
-۱۹ دی ۱۴۰۴
-</button>
+
+<div
+    id="musicText"
+    class="music-text">
+
+    موسیقی در حال پخش است
 
 </div>
 
-</div>
-
-<div class="field">
-
-<label>لینک پیام تلگرام عکس</label>
-
-<input
-id="telegram"
-placeholder="https://t.me/...">
-
-</div>
-
-<button
-class="submit"
-onclick="sendRequest()">
-ارسال برای بررسی
-</button>
-
-<div class="note">
-لینک باید مربوط به پیام تلگرامی باشد که عکس در آن قرار دارد.
-پس از بررسی مدیر، در صورت تأیید اطلاعات در سایت نمایش داده می‌شود.
-</div>
-
-</div>
-</div>
 
 
-<!-- موزیک -->
+<audio
+    id="music"
+    loop
+    preload="auto">
 
-<button id="musicBtn" onclick="toggleMusic()">▶</button>
+    <source
+        src="music.mp3"
+        type="audio/mpeg">
 
-<audio id="music" loop>
-    <source src="music.mp3" type="audio/mpeg">
 </audio>
+
 
 
 <script>
 
-/*
-========================================
-نام Repository گیت‌هاب را اینجا بگذار
-مثال:
-kami/javidnam
-========================================
-*/
 
-const GITHUB_REPO = "USERNAME/javidnam";
-
-let selectedDate = "";
+/* =========================
+   تنظیمات
+========================= */
 
 
-/* فرم */
-
-function openForm(){
-    document.getElementById("modal").classList.add("show");
-}
-
-function closeForm(){
-    document.getElementById("modal").classList.remove("show");
-}
+const DATA_URL =
+    "data.json";
 
 
-/* انتخاب تاریخ */
-
-function selectDate(button,date){
-
-    document
-        .querySelectorAll(".date")
-        .forEach(x => x.classList.remove("selected"));
-
-    button.classList.add("selected");
-
-    selectedDate = date;
-}
+let people = [];
 
 
-/* ارسال درخواست */
 
-function sendRequest(){
-
-    const name =
-        document.getElementById("name").value.trim();
-
-    const age =
-        document.getElementById("age").value.trim();
-
-    const city =
-        document.getElementById("city").value.trim();
-
-    const telegram =
-        document.getElementById("telegram").value.trim();
-
-    if(!name || !age || !city || !selectedDate || !telegram){
-
-        alert("لطفاً تمام اطلاعات را وارد کنید.");
-
-        return;
-    }
-
-    if(!telegram.startsWith("https://t.me/")){
-
-        alert("لینک تلگرام معتبر نیست.");
-
-        return;
-    }
+/* =========================
+   دریافت اطلاعات
+========================= */
 
 
-    /*
-    اطلاعات درخواست
-    */
+async function loadPeople(){
 
-    const body = `
-
-### درخواست ثبت جاویدنام
-
-**نام:** ${name}
-
-**سن:** ${age}
-
-**شهر:** ${city}
-
-**تاریخ:** ${selectedDate}
-
-**لینک عکس تلگرام:** ${telegram}
-
-**وضعیت:** pending
-
-این درخواست توسط فرم سایت ارسال شده است.
-
-`;
-
-    const title =
-        encodeURIComponent(
-            "درخواست جاویدنام - " + name
+    const container =
+        document.getElementById(
+            "people"
         );
 
-    const encodedBody =
-        encodeURIComponent(body);
+    try{
 
+        const response =
+            await fetch(
+                DATA_URL +
+                "?v=" +
+                Date.now()
+            );
 
-    /*
-    GitHub Issue
-    */
+        if(!response.ok){
 
-    const url =
-        "https://github.com/" +
-        GITHUB_REPO +
-        "/issues/new?title=" +
-        title +
-        "&body=" +
-        encodedBody;
+            throw new Error(
+                "data.json پیدا نشد"
+            );
 
+        }
 
-    window.open(url,"_blank");
+        people =
+            await response.json();
+
+        renderPeople(people);
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                هنوز اطلاعاتی ثبت نشده است.
+
+            </div>
+
+        `;
+
+    }
 
 }
 
 
-/* جستجو */
 
-function searchNames(){
+/* =========================
+   نمایش افراد
+========================= */
 
-    const q =
+
+function renderPeople(list){
+
+    const container =
+        document.getElementById(
+            "people"
+        );
+
+
+    if(
+        !Array.isArray(list) ||
+        list.length === 0
+    ){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                هنوز جاویدنامی ثبت نشده است.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        list
+        .map(function(person){
+
+            return createPerson(
+                person
+            );
+
+        })
+        .join("");
+
+}
+
+
+
+/* =========================
+   ساخت کارت
+========================= */
+
+
+function createPerson(person){
+
+    const name =
+        escapeHTML(
+            person.name || "بدون نام"
+        );
+
+    const age =
+        escapeHTML(
+            String(
+                person.age || "-"
+            )
+        );
+
+    const city =
+        escapeHTML(
+            person.city || "-"
+        );
+
+    const date =
+        escapeHTML(
+            person.date || "-"
+        );
+
+    const telegram =
+        person.telegram || "";
+
+
+    return `
+
+        <article
+            class="person"
+            data-name="${name}"
+            data-city="${city}">
+
+
+            <div class="person-image">
+
+                ${
+                    telegram
+                    ?
+                    `
+                    <a
+                        href="${escapeAttribute(telegram)}"
+                        target="_blank"
+                        rel="noopener">
+
+                        مشاهده عکس
+
+                    </a>
+                    `
+                    :
+                    `
+                    <span
+                        style="
+                        color:#444;
+                        font-size:12px;
+                        ">
+
+                        تصویر موجود نیست
+
+                    </span>
+                    `
+                }
+
+            </div>
+
+
+            <div class="person-info">
+
+                <div class="person-name">
+
+                    ${name}
+
+                </div>
+
+
+                <div class="info">
+
+                    <span>
+                        سن
+                    </span>
+
+                    <span>
+                        ${age}
+                    </span>
+
+                </div>
+
+
+                <div class="info">
+
+                    <span>
+                        شهر
+                    </span>
+
+                    <span>
+                        ${city}
+                    </span>
+
+                </div>
+
+
+                <div class="info">
+
+                    <span>
+                        تاریخ
+                    </span>
+
+                    <span>
+                        ${date}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+
+/* =========================
+   جستجو
+========================= */
+
+
+function searchPeople(){
+
+    const query =
         document
         .getElementById("search")
         .value
         .trim()
         .toLowerCase();
 
-    document
-        .querySelectorAll(".name")
-        .forEach(item => {
 
-            item.style.display =
-                item.innerText
-                .toLowerCase()
-                .includes(q)
-                ? ""
-                : "none";
+    const filtered =
+        people.filter(function(person){
+
+            const name =
+                String(
+                    person.name || ""
+                ).toLowerCase();
+
+            const city =
+                String(
+                    person.city || ""
+                ).toLowerCase();
+
+            return (
+                name.includes(query) ||
+                city.includes(query)
+            );
 
         });
+
+
+    renderPeople(filtered);
+
 }
 
 
-/* موزیک */
+
+/* =========================
+   امنیت نمایش متن
+========================= */
+
+
+function escapeHTML(value){
+
+    return String(value)
+
+        .replaceAll("&","&amp;")
+
+        .replaceAll("<","&lt;")
+
+        .replaceAll(">","&gt;")
+
+        .replaceAll('"',"&quot;")
+
+        .replaceAll("'","&#039;");
+
+}
+
+
+function escapeAttribute(value){
+
+    return String(value)
+
+        .replaceAll("&","&amp;")
+
+        .replaceAll('"',"&quot;")
+
+        .replaceAll("<","&lt;")
+
+        .replaceAll(">","&gt;");
+
+}
+
+
+
+/* =========================
+   موزیک
+========================= */
+
 
 const music =
-    document.getElementById("music");
+    document.getElementById(
+        "music"
+    );
 
-const musicBtn =
-    document.getElementById("musicBtn");
 
-function toggleMusic(){
+const musicButton =
+    document.getElementById(
+        "musicButton"
+    );
+
+
+const musicText =
+    document.getElementById(
+        "musicText"
+    );
+
+
+async function toggleMusic(){
 
     if(music.paused){
 
-        music.play()
-        .then(()=>{
-            musicBtn.innerText="Ⅱ";
-        })
-        .catch(()=>{
-            alert("فایل music.mp3 را کنار index.html قرار بده.");
-        });
+        try{
 
-    }else{
+            await music.play();
 
-        music.pause();
+            musicButton.innerText =
+                "Ⅱ";
 
-        musicBtn.innerText="▶";
-    }
-}
+            musicButton.classList.add(
+                "playing"
+            );
 
-</script>
+            musicText.classList.add(
+                "show"
+            );
 
-</body>
-</html>
+            setTimeout(function(){
+
+                musicText.classList.remove(
+                    "show"
+                );
+
+            },3000);
+
+        }
+
+        catch(error){
+
+            alert(
+                "فایل music.mp3
